@@ -1,9 +1,11 @@
 from seleniumwire import webdriver
 from selenium.webdriver.chrome.service import Service
 from fake_useragent import UserAgent
+from config import Config
 import time
 
 
+print(Config.LOGIN)
 user_agent = UserAgent()
 
 # options
