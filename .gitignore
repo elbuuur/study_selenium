@@ -103,7 +103,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
+chromedriver/.env
 .venv
 env/
 venv/

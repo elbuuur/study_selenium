@@ -10,3 +10,4 @@ class Config:
         PROXY = os.getenv('PROXY')
         LOGIN = os.getenv('LOGIN')
         PASSWORD = os.getenv('PASSWORD')
+        PORT = os.getenv('PORT')
