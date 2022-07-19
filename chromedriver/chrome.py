@@ -92,6 +92,8 @@ def get_chromedriver(use_proxy=False, user_agent=None):
     if user_agent:
         user_agent = UserAgent()
         options.add_argument(f'user-agent={user_agent.random}')
+
+    options.add_experimental_option('excludeSwitches', ['enable-logging'])
     driver = webdriver.Chrome(
         service=path,
         options=options)
@@ -101,12 +103,19 @@ def get_chromedriver(use_proxy=False, user_agent=None):
 def main():
     try:
         driver = get_chromedriver(use_proxy=True)
-        # driver.get('https://intoli.com/blog/not-possible-to-block-chrome-headless/chrome-headless-test.html')
         driver.get('https://www.avito.ru/ufa/kvartiry/prodam/3-komnatnye/')
 
-        # items = driver.find_elements(By.XPATH, "//div[@data-marker='item']")
-        # items = driver.find_elements()
-        # print(items)
+        driver.implicitly_wait(5)
+
+        items = driver.find_elements(By.XPATH, "//div[@data-marker='item']")
+
+        driver.implicitly_wait(5)
+
+        info = {}
+
+        for x, item in enumerate(items):
+            print(item.find_element(By.XPATH, "//a[@data-marker='item-title']").get_property('href'))
+        # print(info)
 
         time.sleep(25)
     except Exception as ex:
